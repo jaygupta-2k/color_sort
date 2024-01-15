@@ -1,6 +1,6 @@
 from create_stack import create_stack
 from move_letters import move_letters
-from stack_disp import stack_disp
+from disp_func import stack_disp, inc_move, new_game
 import re
 
 if __name__ == "__main__":
@@ -28,15 +28,18 @@ if __name__ == "__main__":
                     cont = 'N'
                     break
                 else:
-                    print("Incorrect Input!")
+                    print(f"\n{inc_move()}, {name}!")
                     continue
             orig_ind = int(orig)-1
             final_ind = int(final)-1
             orig = stack_list[orig_ind]
             final = stack_list[final_ind]
-            stack_list[orig_ind], stack_list[final_ind] = move_letters(orig, final)
-            stack_disp(stack_list)
+            try:
+                stack_list[orig_ind], stack_list[final_ind] = move_letters(orig, final)
+                stack_disp(stack_list)
+            except TypeError:
+                print(f"\n{inc_move()}, {name}!")
         if inp_req:
-            cont = input("> Another round?[Y/n]\n> ")
+            cont = input(f"> {new_game()}, {name}?[Y/n]\n> ")
         else:
             continue
