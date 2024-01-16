@@ -1,7 +1,7 @@
 def move_letters(orig, final):
     orig = orig.copy()
     final = final.copy()
-    if len(final)<4 and len(orig)>0:
+    if len(final)<4:
         if len(final)==0 or final[-1]==orig[-1]:
             prev_val = orig[-1]
             while len(final)<5 and orig[-1]==prev_val:
