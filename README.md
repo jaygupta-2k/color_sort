@@ -7,8 +7,11 @@ Recreating the classical color sort game in Python.
    ```
    git clone https://github.com/jaygupta-2k/color_sort.git
    ```
-2. Open the directory in your terminal
-3. Run using the following command
+2. Open the directory in your terminal/move into the directory
+   ```
+   cd color_sort
+   ```
+4. Run using the following command
    ```
    python main.py
    ```
