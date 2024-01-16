@@ -1,6 +1,6 @@
 from create_stack import create_stack
 from move_letters import move_letters
-from disp_func import stack_disp, inc_move, new_game
+from disp_func import stack_disp, prompts
 import re
 
 if __name__ == "__main__":
@@ -28,18 +28,16 @@ if __name__ == "__main__":
                     cont = 'N'
                     break
                 else:
-                    print(f"\n{inc_move()}, {name}!")
+                    print(f"\n{prompts(True)}, {name}!")
                     continue
             orig_ind = int(orig)-1
             final_ind = int(final)-1
-            orig = stack_list[orig_ind]
-            final = stack_list[final_ind]
             try:
-                stack_list[orig_ind], stack_list[final_ind] = move_letters(orig, final)
+                stack_list[orig_ind], stack_list[final_ind] = move_letters(stack_list[orig_ind], stack_list[final_ind])
                 stack_disp(stack_list)
             except TypeError:
-                print(f"\n{inc_move()}, {name}!")
+                print(f"\n{prompts(True)}, {name}!")
         if inp_req:
-            cont = input(f"> {new_game()}, {name}?[Y/n]\n> ")
+            cont = input(f"> {prompts(False)}, {name}?[Y/n]\n> ")
         else:
             continue
