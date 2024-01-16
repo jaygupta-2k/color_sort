@@ -1,5 +1,5 @@
 from create_stack import create_stack
-from move_letters import move_letters
+from letter_func import move_letters, solvable_check
 from disp_func import stack_disp, prompts
 import re
 
@@ -10,15 +10,18 @@ if __name__ == "__main__":
     while cont in ['Y','y',""]:
         stack_list = create_stack()
         if not cnt:
-            print("\nNote:\n  R: Reset\n  Q: Quit")
+            print("\nNote:\n  R: Reset\n  Q: Quit\n  H: Hint")
         cnt+=1
         print(f"\nGame {cnt} begins!")
         stack_disp(stack_list)
         while all([len(i) == 0 or i.count(i[0]) == 4 for i in stack_list]) == False:
+            s = solvable_check(stack_list, len(stack_list))
+            if not s:
+                break
             inp_req = True
             user_inp = re.split(r"[,\s]",input("\nEnter your move: "))
             try:
-                orig, final = user_inp
+                orig, final = list(filter(lambda x: x!='', user_inp))
             except ValueError:
                 if user_inp[0] in ['R','r']:
                     inp_req = False
@@ -27,8 +30,12 @@ if __name__ == "__main__":
                     inp_req = False
                     cont = 'N'
                     break
+                elif user_inp[0] in ['H','h']:
+                    print(f"\n{s}")
+                    continue
                 else:
-                    print(f"\n{prompts(True)}, {name}!")
+                    print(f"\n> {prompts(True)}, {name}!")
+                    print(user_inp)
                     continue
             orig_ind = int(orig)-1
             final_ind = int(final)-1
@@ -36,8 +43,10 @@ if __name__ == "__main__":
                 stack_list[orig_ind], stack_list[final_ind] = move_letters(stack_list[orig_ind], stack_list[final_ind])
                 stack_disp(stack_list)
             except TypeError:
-                print(f"\n{prompts(True)}, {name}!")
-        if inp_req:
+                print(f"\n> {prompts(True)}, {name}!")
+        if inp_req and s:
             cont = input(f"> {prompts(False)}, {name}?[Y/n]\n> ")
+        elif not s:
+            cont = input(f"> The game has become unsolvable. {prompts(False)}, {name}?[Y/n]\n> ")
         else:
             continue

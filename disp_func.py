@@ -9,8 +9,8 @@ def stack_disp(stack_list):
 
 def prompts(inp):
     if inp:
-        prompts = open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'inc_mv_prompts'), 'r').read().split('\n')
+        prompts = open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'inc_mv_prompts'), 'r').read().split('\n')[:-1]
         return prompts[randint(0,len(prompts) - 1)]
     else:
-        prompts = open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'new_game_prompts'), 'r').read().split('\n')
+        prompts = open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'new_game_prompts'), 'r').read().split('\n')[:-1]
         return prompts[randint(0,len(prompts) - 1)]
