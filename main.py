@@ -35,7 +35,6 @@ if __name__ == "__main__":
                     continue
                 else:
                     print(f"\n> {prompts(True)}, {name}!")
-                    print(user_inp)
                     continue
             orig_ind = int(orig)-1
             final_ind = int(final)-1
@@ -43,6 +42,8 @@ if __name__ == "__main__":
                 stack_list[orig_ind], stack_list[final_ind] = move_letters(stack_list[orig_ind], stack_list[final_ind])
                 stack_disp(stack_list)
             except TypeError:
+                print(f"\n> {prompts(True)}, {name}!")
+            except IndexError:
                 print(f"\n> {prompts(True)}, {name}!")
         if inp_req and s:
             cont = input(f"> {prompts(False)}, {name}?[Y/n]\n> ")
