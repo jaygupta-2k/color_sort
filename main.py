@@ -36,8 +36,12 @@ if __name__ == "__main__":
                 else:
                     print(f"\n> {prompts(True)}, {name}!")
                     continue
-            orig_ind = int(orig)-1
-            final_ind = int(final)-1
+            try:
+                orig_ind = int(orig)-1
+                final_ind = int(final)-1
+            except ValueError:
+                print(f"\n> {prompts(True)}, {name}!")
+                continue
             try:
                 stack_list[orig_ind], stack_list[final_ind] = move_letters(stack_list[orig_ind], stack_list[final_ind])
                 stack_disp(stack_list)
