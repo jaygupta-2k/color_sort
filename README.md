@@ -13,9 +13,9 @@ Recreating the classical color sort game in Python.
    ```
 4. Run using the following command
    ```
-   python main.py
+   python color_sort.py
    ```
    Note: If you are using Linux, you might have to use the following command
    ```
-   python3 main.py
+   python3 color_sort.py
    ```
