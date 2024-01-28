@@ -19,3 +19,7 @@ Recreating the classical color sort game in Python.
    ```
    python3 color_sort.py
    ```
+
+## To-do
+1. Improve the way the stacks are displayed.
+2. Add a "How to play?" before the game begins.
